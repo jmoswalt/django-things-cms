@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Page List{% endblock title %}
+
+{% block body %}
+    {% for object in object_list %}
+        {% include "pages/page_list_item.html" %}
+    {% endfor %}
+{% endblock body %}
