@@ -1,4 +1,6 @@
 django==1.4.1
+git+git://github.com/jmoswalt/django-things#egg=things-20121013-163713
+
 
 # Heroku deployment packages
 dj-database-url==0.2.1
@@ -11,5 +13,3 @@ django-storages==1.1.5
 
 # For Sentry
 raven==2.0.2
-
-git+git://github.com/jmoswalt/django-things#egg=things-20121013-163413
