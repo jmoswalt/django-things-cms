@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Journal List{% endblock title %}
+
+{% block body %}
+    {% for object in object_list %}
+        {% include "journals/journal_list_item.html" %}
+    {% endfor %}
+{% endblock body %}

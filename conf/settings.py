@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'things',
     'articles',
+    'journals',
 )
 
 

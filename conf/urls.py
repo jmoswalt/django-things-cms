@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'app_name.views.home', name='home'),
     url(r'^articles/', include('articles.urls')),
+    url(r'^journals/', include('journals.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
 
