@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Article List{% endblock title %}
+
+{% block body %}
+    {% for object in object_list %}
+        {% include "articles/article_list_item.html" %}
+    {% endfor %}
+{% endblock body %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 from things.models import Thing
 from things.types import *
@@ -18,7 +19,7 @@ ARITCLE_ATTRIBUTES = (
     },
     {
         "name": "Publish Date",
-        "key": "publish_dt",
+        "key": "published_at",
         "description": "The publish date of the Article.",
         "datatype": TYPE_DATE
     },
@@ -64,3 +65,6 @@ class Article(Thing):
     @models.permalink
     def get_absolute_url(self):
         return ("article_detail", [self.slug])
+
+    def get_edit_url(self):
+        return reverse("admin:articles_article_change", args=[self.pk])

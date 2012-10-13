@@ -10,7 +10,7 @@ class ArticleForm(ThingForm):
 
     content = forms.CharField(widget=forms.Textarea, required=True)
     author = forms.CharField(required=False)
-    publish_dt = forms.DateTimeField(required=True, widget=AdminSplitDateTime)
+    published_at = forms.DateTimeField(required=True, widget=AdminSplitDateTime)
     featured = forms.BooleanField(required=False)
 
     class Meta:

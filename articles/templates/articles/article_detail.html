@@ -6,5 +6,7 @@
     <h1>{{ object.name }}</h1>
     <p>By: {{ object.author }}</p>
     <p>{{ object.content|safe }}</p>
-    <p>Published: {{ object.publish_dt|date:"m/d/Y" }}</p>
+    <p>Published: {{ object.published_at|date:"m/d/Y h:i a" }}</p>
+    {% include "edit_link.html" %}
+    <p><a href="{% url article_list %}">All Articles</a></p>
 {% endblock body %}
