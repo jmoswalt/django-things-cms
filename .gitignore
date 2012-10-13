@@ -7,6 +7,9 @@
 # Ignore the virtualenv
 /venv/
 
+# Ignore collectstatic dir
+/static/
+
 # except for .gitignore
 !/.gitignore
 !/.env_example
