@@ -9,8 +9,7 @@ from articles.models import Article
 
 class ArticleAdmin(ThingAdmin):
     form = ArticleForm
-    list_display = ['name', 'view_on_site', 'content', 'author', 'created_at']
-    #fields = ['name', 'content', 'author', 'publish_dt']
+    list_display = ['name', 'link', 'content', 'author', 'created_at']
 
     def content(self, obj):
         return truncate_words(obj.content, 15)
