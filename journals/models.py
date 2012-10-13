@@ -35,12 +35,6 @@ ARITCLE_ATTRIBUTES = (
         "description": "The temperature for this Journal (in F).",
         "datatype": TYPE_FLOAT
     },
-    # {
-    #     "name": "My Int",
-    #     "key": "my_int",
-    #     "description": "The publish date of the Journal.",
-    #     "datatype": TYPE_INT
-    # },
 )
 
 

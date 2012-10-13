@@ -30,15 +30,9 @@ ARITCLE_ATTRIBUTES = (
         "datatype": TYPE_BOOLEAN
     },
     # {
-    #     "name": "My Float",
-    #     "key": "my_float",
-    #     "description": "The publish date of the Article.",
-    #     "datatype": TYPE_FLOAT
-    # },
-    # {
-    #     "name": "My Int",
-    #     "key": "my_int",
-    #     "description": "The publish date of the Article.",
+    #     "name": "Order",
+    #     "key": "ordering",
+    #     "description": "The order number of the Article.",
     #     "datatype": TYPE_INT
     # },
 )
