@@ -1,5 +1,9 @@
-<h2><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></h2>
-<p>By: {{ object.author }}</p>
-<p>{{ object.content|safe|truncatewords_html:"40" }}</p>
-<p>Published: {{ object.published_at|date:"m/d/Y h:i a" }}</p>
-{% include "edit_link.html" %}
+    <div class="row">
+        <div class="span8">
+            <h2><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></h2>
+            {% if object.author %}<p>By: {{ object.author }}</p>{% endif %}
+            {% if object.published_at %}<p>Published: {{ object.published_at|date:"m/d/Y h:i a" }}</p>{% endif %}
+            <p>{{ object.content|safe|truncatewords_html:"40" }}</p>
+            {% include "edit_link.html" %}
+        </div>
+    </div>

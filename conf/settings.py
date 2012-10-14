@@ -69,6 +69,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    path.join(PROJECT_ROOT, 'templates', 'static'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -106,6 +107,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.i18n',
     'django.core.context_processors.media',
     'django.core.context_processors.request',
+    'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
 )
 
