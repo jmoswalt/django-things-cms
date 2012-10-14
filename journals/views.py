@@ -10,4 +10,14 @@ class JournalDetailView(DetailView):
 
 class JournalListView(ListView):
     model = Journal
-    queryset = Journal.objects.filter(datum__key="published_at").order_by('-datum__value', '-created_at')
+
+    def get_queryset(self, *args, **kwargs):
+        super(JournalListView, self).get_queryset(*args, **kwargs)
+        if self.request.user.is_superuser:
+            queryset = Journal.objects.all()
+        else:
+            queryset = Journal.objects.filter(personal="")
+
+        queryset = queryset.filter(datum__key="journal_date").order_by('-datum__value', '-created_at')
+
+        return queryset

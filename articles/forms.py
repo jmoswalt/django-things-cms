@@ -15,4 +15,4 @@ class ArticleForm(ThingForm):
 
     class Meta:
         model = Article
-        exclude = ['obj_type']
+        exclude = ['content_type_id']

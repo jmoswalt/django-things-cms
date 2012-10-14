@@ -34,14 +34,6 @@ class JournalAdmin(ThingAdmin):
     def content(self, obj):
         return truncate_words(obj.content, 15)
 
-    def author(self, obj):
-        return obj.author
-
-    def journal_date(self, obj):
-        if obj.journal_date:
-            return obj.journal_date
-        return ""
-
     def temperature(self, obj):
         if obj.temperature:
             return "%s &deg;F" % obj.temperature

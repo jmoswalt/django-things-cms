@@ -13,4 +13,4 @@ class PageForm(ThingForm):
 
     class Meta:
         model = Page
-        exclude = ['obj_type']
+        exclude = ['content_type_id']

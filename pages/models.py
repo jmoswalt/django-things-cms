@@ -1,5 +1,4 @@
-from django.db import models
-from django.core.urlresolvers import reverse
+from django.contrib.contenttypes.models import ContentType
 
 from things.models import Thing
 from things.types import *
@@ -36,12 +35,5 @@ class Page(Thing):
         return PAGE_ATTRIBUTES
 
     @classmethod
-    def clstype(cls):
-        return "page"
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ("page_detail", [self.slug])
-
-    def get_edit_url(self):
-        return reverse("admin:pages_page_change", args=[self.pk])
+    def content_type(cls):
+        return ContentType.objects.get(name="page", app_label="pages")

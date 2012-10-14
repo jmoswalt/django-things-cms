@@ -1,5 +1,4 @@
-from django.db import models
-from django.core.urlresolvers import reverse
+from django.contrib.contenttypes.models import ContentType
 
 from things.models import Thing
 from things.types import *
@@ -48,17 +47,10 @@ class Article(Thing):
         return ARITCLE_ATTRIBUTES
 
     @classmethod
-    def clstype(cls):
-        return "article"
+    def content_type(cls):
+        return ContentType.objects.get(name="article", app_label="articles")
 
-    @models.permalink
-    def get_absolute_url(self):
-        return ("article_detail", [self.slug])
-
-    def get_edit_url(self):
-        return reverse("admin:articles_article_change", args=[self.pk])
-
-    # FIELDS
+    # FIELD METHODS
     def published_at(self):
         return self.published_at
 

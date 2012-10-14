@@ -10,10 +10,10 @@ class JournalForm(ThingForm):
 
     content = forms.CharField(widget=forms.Textarea, required=True)
     author = forms.CharField(required=False)
-    journal_date = forms.DateTimeField(required=True, widget=AdminSplitDateTime)
+    journal_date = forms.DateTimeField(required=False, widget=AdminSplitDateTime)
     personal = forms.BooleanField(required=False)
     temperature = forms.FloatField(required=False)
 
     class Meta:
         model = Journal
-        exclude = ['obj_type']
+        exclude = ['content_type_id']
