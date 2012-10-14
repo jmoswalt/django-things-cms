@@ -95,8 +95,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'johnny.middleware.LocalStoreClearMiddleware',
+    'johnny.middleware.QueryCacheMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -128,11 +129,15 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'things',
+)
+
+THINGS_APPS = (
     'articles',
     'journals',
     'pages',
 )
 
+INSTALLED_APPS += THINGS_APPS
 
 # -------------------------------------- #
 # DEBUG OPTIONS
@@ -141,12 +146,25 @@ INSTALLED_APPS = (
 if env('SENTRY_DSN', None):
     INSTALLED_APPS += ('raven.contrib.django',)
 
+if env('DEBUG_TOOLBAR'):
+    if 'debug_toolbar' not in INSTALLED_APPS:
+        INSTALLED_APPS += ('debug_toolbar',)
+
+    if 'debug_toolbar.middleware.DebugToolbarMiddleware' not in MIDDLEWARE_CLASSES:
+        MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+
+    DEBUG_TOOLBAR_CONFIG = {
+        'INTERCEPT_REDIRECTS': False,
+    }
+    INTERNAL_IPS = ('127.0.0.1',)
 
 # -------------------------------------- #
 # CACHE
 # -------------------------------------- #
 
 SITE_CACHE_KEY = env('SITE_CACHE_KEY', SECRET_KEY)
+CACHE_PRE_KEY = env('CACHE_PRE_KEY', SITE_CACHE_KEY)
+JOHNNY_MIDDLEWARE_KEY_PREFIX = CACHE_PRE_KEY
 
 # Dummy Cache is the initial default caching used
 CACHES = {
@@ -210,7 +228,7 @@ if USE_MEMCACHIER:
 
 # Caching defaults
 CACHES['default']['TIMEOUT'] = 604800  # 1 week
-
+CACHES['default']['JOHNNY_CACHE'] = True
 
 # -------------------------------------- #
 # EMAIL

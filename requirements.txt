@@ -1,6 +1,9 @@
 django==1.4.1
-git+git://github.com/jmoswalt/django-things#egg=things-20121014.033713
+git+git://github.com/jmoswalt/django-things#egg=things-20121014.123713
 
+# Caching
+johnny-cache==1.4
+python-memcached==1.48
 
 # Heroku deployment packages
 dj-database-url==0.2.1

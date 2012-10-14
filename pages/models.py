@@ -16,12 +16,6 @@ PAGE_ATTRIBUTES = (
         "description": "Select whether or not this is a private Page.",
         "datatype": TYPE_BOOLEAN
     },
-    {
-        "name": "Priority",
-        "key": "priority",
-        "description": "Select whether or not this is a private Page.",
-        "datatype": TYPE_INT
-    },
 )
 
 
@@ -37,3 +31,10 @@ class Page(Thing):
     @classmethod
     def content_type(cls):
         return ContentType.objects.get(name="page", app_label="pages")
+
+    # FIELDS
+    def content(self, obj):
+        return obj.content
+
+    def private(self, obj):
+        return obj.private

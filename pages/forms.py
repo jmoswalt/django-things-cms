@@ -9,7 +9,6 @@ class PageForm(ThingForm):
 
     content = forms.CharField(widget=forms.Textarea, required=True)
     private = forms.BooleanField(required=False)
-    priority = forms.IntegerField(required=False, initial=0)
 
     class Meta:
         model = Page

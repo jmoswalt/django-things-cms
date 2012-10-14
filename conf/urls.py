@@ -21,14 +21,13 @@ urlpatterns += patterns('',
 
 def get_app_url_patterns():
     items = []
-    apps = settings.INSTALLED_APPS
+    apps = settings.THINGS_APPS
     for app in apps:
-        if "things" not in app and "django" not in app:
-            try:
-                __import__('.'.join([app, 'urls']))
-                items.append((r'', include('%s.urls' % app,)))
-            except:
-                pass
+        try:
+            __import__('.'.join([app, 'urls']))
+            items.append((r'', include('%s.urls' % app,)))
+        except:
+            pass
 
     return patterns('', *items)
 
