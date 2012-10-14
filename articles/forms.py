@@ -10,9 +10,9 @@ class ArticleForm(ThingForm):
 
     content = forms.CharField(widget=forms.Textarea, required=True)
     author = forms.CharField(required=False)
-    published_at = forms.DateTimeField(required=True, widget=AdminSplitDateTime)
+    published_at = forms.DateTimeField(required=False, widget=AdminSplitDateTime)
     featured = forms.BooleanField(required=False)
 
     class Meta:
         model = Article
-        exclude = ['type']
+        exclude = ['obj_type']

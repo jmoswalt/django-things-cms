@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from things.models import Thing
 from things.types import *
 
-ARITCLE_ATTRIBUTES = (
+PAGE_ATTRIBUTES = (
     {
         "name": "Content",
         "key": "content",
@@ -17,26 +17,27 @@ ARITCLE_ATTRIBUTES = (
         "description": "Select whether or not this is a private Page.",
         "datatype": TYPE_BOOLEAN
     },
+    {
+        "name": "Priority",
+        "key": "priority",
+        "description": "Select whether or not this is a private Page.",
+        "datatype": TYPE_INT
+    },
 )
 
 
-class PageManager(models.Manager):
-    def get_query_set(self):
-        return super(PageManager, self).get_query_set().filter(type="page")
-
-
 class Page(Thing):
-    objects = PageManager()
 
     class Meta:
         proxy = True
 
-    def attrs(self):
-        return ARITCLE_ATTRIBUTES
+    @classmethod
+    def attrs(cls):
+        return PAGE_ATTRIBUTES
 
-    def save(self, *args, **kwargs):
-        self.type = "page"
-        super(Page, self).save(*args, **kwargs)
+    @classmethod
+    def clstype(cls):
+        return "page"
 
     @models.permalink
     def get_absolute_url(self):

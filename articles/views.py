@@ -10,4 +10,4 @@ class ArticleDetailView(DetailView):
 
 class ArticleListView(ListView):
     model = Article
-    queryset = Article.objects.filter(datum__key="published_at").order_by('-datum__value')
+    queryset = Article.objects.filter(datum__key="published_at").order_by('-datum__value', '-created_at')

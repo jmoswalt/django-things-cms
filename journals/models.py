@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from things.models import Thing
 from things.types import *
 
-ARITCLE_ATTRIBUTES = (
+JOURNAL_ATTRIBUTES = (
     {
         "name": "Author",
         "key": "author",
@@ -38,23 +38,18 @@ ARITCLE_ATTRIBUTES = (
 )
 
 
-class JournalManager(models.Manager):
-    def get_query_set(self):
-        return super(JournalManager, self).get_query_set().filter(type="journal")
-
-
 class Journal(Thing):
-    objects = JournalManager()
 
     class Meta:
         proxy = True
 
-    def attrs(self):
-        return ARITCLE_ATTRIBUTES
+    @classmethod
+    def attrs(cls):
+        return JOURNAL_ATTRIBUTES
 
-    def save(self, *args, **kwargs):
-        self.type = "journal"
-        super(Journal, self).save(*args, **kwargs)
+    @classmethod
+    def clstype(cls):
+        return "journal"
 
     @models.permalink
     def get_absolute_url(self):

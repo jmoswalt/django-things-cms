@@ -14,10 +14,4 @@ class ArticleAdmin(ThingAdmin):
     def content(self, obj):
         return truncate_words(obj.content, 15)
 
-    def author(self, obj):
-        return obj.author
-
-    def published_at(self, obj):
-        return obj.published_at
-
 admin.site.register(Article, ArticleAdmin)

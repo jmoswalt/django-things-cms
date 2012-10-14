@@ -38,23 +38,18 @@ ARITCLE_ATTRIBUTES = (
 )
 
 
-class ArticleManager(models.Manager):
-    def get_query_set(self):
-        return super(ArticleManager, self).get_query_set().filter(type="article")
-
-
 class Article(Thing):
-    objects = ArticleManager()
 
     class Meta:
         proxy = True
 
-    def attrs(self):
+    @classmethod
+    def attrs(cls):
         return ARITCLE_ATTRIBUTES
 
-    def save(self, *args, **kwargs):
-        self.type = "article"
-        super(Article, self).save(*args, **kwargs)
+    @classmethod
+    def clstype(cls):
+        return "article"
 
     @models.permalink
     def get_absolute_url(self):
@@ -62,3 +57,10 @@ class Article(Thing):
 
     def get_edit_url(self):
         return reverse("admin:articles_article_change", args=[self.pk])
+
+    # FIELDS
+    def published_at(self):
+        return self.published_at
+
+    def author(self):
+        return self.author

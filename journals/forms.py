@@ -16,4 +16,4 @@ class JournalForm(ThingForm):
 
     class Meta:
         model = Journal
-        exclude = ['type']
+        exclude = ['obj_type']
