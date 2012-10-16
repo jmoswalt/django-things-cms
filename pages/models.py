@@ -1,7 +1,6 @@
 from django.contrib.contenttypes.models import ContentType
-from django import forms
 
-from things.models import Thing
+from things.models import Thing, register_thing
 from things.types import *
 
 PAGE_ATTRIBUTES = (
@@ -9,9 +8,8 @@ PAGE_ATTRIBUTES = (
         "name": "Content",
         "key": "content",
         "description": "The main content of the ariticle.",
-        "form_widget": forms.Textarea(),
         "required": True,
-        "datatype": TYPE_TEXT
+        "datatype": TYPE_LONGTEXT
     },
     {
         "name": "Private",
@@ -28,16 +26,7 @@ class Page(Thing):
         proxy = True
 
     @classmethod
-    def attrs(cls):
-        return PAGE_ATTRIBUTES
-
-    @classmethod
     def content_type(cls):
         return ContentType.objects.get(name="page", app_label="pages")
 
-    # FIELDS
-    def content(self, obj):
-        return obj.content
-
-    def private(self, obj):
-        return obj.private
+register_thing(Page, PAGE_ATTRIBUTES)

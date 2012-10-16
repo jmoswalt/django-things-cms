@@ -7,7 +7,7 @@ from pages.models import Page
 
 
 class PrivateListFilter(ThingListFilter):
-    title = "Privacy"
+    title = "Is Private"
     parameter_name = 'private'
 
 

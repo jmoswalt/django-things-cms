@@ -1,22 +1,21 @@
 from django.contrib.contenttypes.models import ContentType
-from django import forms
 
-from things.models import Thing
+from things.models import Thing, register_thing
 from things.types import *
 
 JOURNAL_ATTRIBUTES = (
     {
-        "name": "Author",
-        "key": "author",
-        "description": "The Author of the Journal.",
-        "datatype": TYPE_TEXT
-    },
-    {
         "name": "Content",
         "key": "content",
         "description": "The main content of the ariticle.",
-        "form_widget": forms.Textarea(),
+        # "form_widget": forms.Textarea(),
         "required": True,
+        "datatype": TYPE_LONGTEXT
+    },
+    {
+        "name": "Author",
+        "key": "author",
+        "description": "The Author of the Journal.",
         "datatype": TYPE_TEXT
     },
     {
@@ -46,16 +45,7 @@ class Journal(Thing):
         proxy = True
 
     @classmethod
-    def attrs(cls):
-        return JOURNAL_ATTRIBUTES
-
-    @classmethod
     def content_type(cls):
         return ContentType.objects.get(name="journal", app_label="journals")
 
-    # FIELD METHODS
-    def author(self, obj):
-        return obj.author
-
-    def journal_date(self, obj):
-        return obj.journal_date
+register_thing(Journal, JOURNAL_ATTRIBUTES, ContentType.objects.get(name="journal", app_label="journals"))

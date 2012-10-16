@@ -1,7 +1,6 @@
 from django.contrib.contenttypes.models import ContentType
-from django import forms
 
-from things.models import Thing
+from things.models import Thing, register_thing
 from things.types import *
 
 ARITCLE_ATTRIBUTES = (
@@ -9,9 +8,8 @@ ARITCLE_ATTRIBUTES = (
         "name": "Content",
         "key": "content",
         "description": "The main content of the ariticle.",
-        "form_widget": forms.Textarea(),
         "required": True,
-        "datatype": TYPE_TEXT
+        "datatype": TYPE_LONGTEXT
     },
     {
         "name": "Author",
@@ -46,16 +44,7 @@ class Article(Thing):
         proxy = True
 
     @classmethod
-    def attrs(cls):
-        return ARITCLE_ATTRIBUTES
-
-    @classmethod
     def content_type(cls):
         return ContentType.objects.get(name="article", app_label="articles")
 
-    # FIELD METHODS
-    def published_at(self):
-        return self.published_at
-
-    def author(self):
-        return self.author
+register_thing(Article, ARITCLE_ATTRIBUTES)
