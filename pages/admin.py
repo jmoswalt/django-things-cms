@@ -1,17 +1,19 @@
 from django.contrib import admin
-from django.utils.text import truncate_words
 
-from things.admin import ThingAdmin
+from things.admin import ThingAdmin, ThingListFilter
 
 from pages.forms import PageForm
 from pages.models import Page
 
 
+class PrivateListFilter(ThingListFilter):
+    title = "Privacy"
+    parameter_name = 'private'
+
+
 class PageAdmin(ThingAdmin):
     form = PageForm
     list_display = ['name', 'link', 'content', 'updated_at', 'private']
-
-    def content(self, obj):
-        return truncate_words(obj.content, 15)
+    list_filter = [PrivateListFilter]
 
 admin.site.register(Page, PageAdmin)

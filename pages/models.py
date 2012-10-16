@@ -1,4 +1,5 @@
 from django.contrib.contenttypes.models import ContentType
+from django import forms
 
 from things.models import Thing
 from things.types import *
@@ -8,6 +9,8 @@ PAGE_ATTRIBUTES = (
         "name": "Content",
         "key": "content",
         "description": "The main content of the ariticle.",
+        "form_widget": forms.Textarea(),
+        "required": True,
         "datatype": TYPE_TEXT
     },
     {

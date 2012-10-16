@@ -1,19 +1,22 @@
 from django.contrib.contenttypes.models import ContentType
+from django import forms
 
 from things.models import Thing
 from things.types import *
 
 ARITCLE_ATTRIBUTES = (
     {
-        "name": "Author",
-        "key": "author",
-        "description": "The Author of the Article.",
-        "datatype": TYPE_TEXT
-    },
-    {
         "name": "Content",
         "key": "content",
         "description": "The main content of the ariticle.",
+        "form_widget": forms.Textarea(),
+        "required": True,
+        "datatype": TYPE_TEXT
+    },
+    {
+        "name": "Author",
+        "key": "author",
+        "description": "The Author of the Article.",
         "datatype": TYPE_TEXT
     },
     {
