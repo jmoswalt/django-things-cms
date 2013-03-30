@@ -1,13 +1,13 @@
-{% extends "base.html" %}
+{% extends "interior.html" %}
 
 {% block title %}{{ object.name }} by {{ object.author }}{% endblock title %}
 
-{% block body %}
+{% block content %}
     <h1>{{ object.name }}</h1>
     <p>By: {{ object.author }}</p>
     <p>{{ object.content|safe }}</p>
-    <p>Journal Date: {{ object.journal_date|date:"m/d/Y h:i a" }}</p>
+    <p>Published at: {{ object.published_at|date:"m/d/Y h:i a" }}</p>
     <p>Weather: {{ object.temperature }} &deg;F</p>
-    {% include "edit_link.html" %}
-    <p><a href="{% url journal_list %}">All Journals</a></p>
-{% endblock body %}
+    {% include "_edit_link.html" %}
+    <p><a href="{% url 'journal_list' %}">All Journals</a></p>
+{% endblock content %}

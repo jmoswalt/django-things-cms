@@ -12,6 +12,7 @@ ADMINS = ()
 
 MANAGERS = ADMINS
 
+ALLOWED_HOSTS = ['*']
 
 # -------------------------------------- #
 # DATABASES
@@ -24,6 +25,20 @@ DATABASES['default']['OPTIONS'] = {'autocommit': True}
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = env('SECRET_KEY', 'bbj1#c30g@qm!=xhpcfk$!^dq#1@s#mr0!f@$cz2e*^1tuskr7')
+
+
+# -------------------------------------- #
+# THEME
+# -------------------------------------- #
+
+THEME = env('THEME', 'default_theme')
+TEMPLATE_DIRS = (
+    path.join(PROJECT_ROOT, 'themes', THEME, 'templates'),
+)
+STATICFILES_DIRS = (
+    path.join(PROJECT_ROOT, 'themes', THEME, 'static'),
+)
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -67,14 +82,6 @@ STATIC_ROOT = path.join(PROJECT_ROOT, 'static')
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
-# Additional locations of static files
-STATICFILES_DIRS = (
-    path.join(PROJECT_ROOT, 'templates', 'static'),
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
-
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -109,6 +116,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
+    'template_texts.context_processors.template_texts',
 )
 
 ROOT_URLCONF = 'conf.urls'
@@ -116,12 +124,6 @@ ROOT_URLCONF = 'conf.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'conf.wsgi.application'
 
-TEMPLATE_DIRS = (
-    path.join(PROJECT_ROOT, 'templates'),
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -137,6 +139,7 @@ THINGS_APPS = (
     'articles',
     'journals',
     'pages',
+    'template_texts',
 )
 
 INSTALLED_APPS += THINGS_APPS

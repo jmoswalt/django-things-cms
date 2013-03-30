@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "interior.html" %}
 
 {% block title %}Article List{% endblock title %}
 
-{% block body %}
+{% block content %}
     {% for object in object_list %}
-        {% include "articles/article_list_item.html" %}
+        {% include "articles/_article_list_item.html" %}
     {% endfor %}
-{% endblock body %}
+{% endblock content %}

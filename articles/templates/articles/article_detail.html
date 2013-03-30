@@ -1,29 +1,24 @@
-{% extends "base.html" %}
+{% extends "interior.html" %}
 
 {% block title %}{{ object.name }} by {{ object.author }}{% endblock title %}
 
-{% block body %}
-    <div class="row">
-        <div class="span4">
-            <h2>SITENAME</h2>
-        </div>
-        <div class="span8 page-header">
-            <h1>{{ object.name }}</h1>
-        </div>
-    </div>
+{% block content %}
     <div class="row">
         <div class="span4">
             <ul class="breadcrumb">
                 <li><a href="#">Home</a> <span class="divider">/</span></li>
-                <li><a href="{% url article_list %}">Articles</a> <span class="divider">/</span></li>
+                <li><a href="{% url 'article_list' %}">Articles</a> <span class="divider">/</span></li>
                 <li class="active">{{ object.name }}</li>
             </ul>
             {% if object.author %}<p>By: {{ object.author }}</p>{% endif %}
             {% if object.published_at %}<p>Published: {{ object.published_at|date:"m/d/Y h:i a" }}</p>{% endif %}
-            {% include "edit_link.html" %}
+            {% include "_edit_link.html" %}
+        </div>
+        <div class="span8 page-header">
+            <h1>{{ object.name }}</h1>
         </div>
         <div class="span8">
             <p>{{ object.content|safe }}</p>
         </div>
     </div>
-{% endblock body %}
+{% endblock content %}
