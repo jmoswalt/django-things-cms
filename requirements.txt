@@ -1,4 +1,4 @@
-git+git://github.com/jmoswalt/django-things#egg=things-20121014.123713
+git+git://github.com/jmoswalt/django-things#egg=things-20130330
 
 # Caching
 johnny-cache==1.4
