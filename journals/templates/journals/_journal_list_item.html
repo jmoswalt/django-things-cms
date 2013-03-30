@@ -3,4 +3,4 @@
 <p>{{ object.content|safe|truncatewords_html:"40" }}</p>
 <p>Published at: {{ object.published_at|date:"m/d/Y h:i a" }}</p>
 <p>Weather: {{ object.temperature }} &deg;F</p>
-{% include "edit_link.html" %}
+{% include "_edit_link.html" %}
