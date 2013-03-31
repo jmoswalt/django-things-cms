@@ -32,11 +32,14 @@ SECRET_KEY = env('SECRET_KEY', 'bbj1#c30g@qm!=xhpcfk$!^dq#1@s#mr0!f@$cz2e*^1tusk
 # -------------------------------------- #
 
 THEME = env('THEME', 'default_theme')
+THEME_PATH = path.join(PROJECT_ROOT, 'themes', THEME)
+
 TEMPLATE_DIRS = (
-    path.join(PROJECT_ROOT, 'themes', THEME, 'templates'),
+    path.join(THEME_PATH, 'templates'),
 )
+
 STATICFILES_DIRS = (
-    path.join(PROJECT_ROOT, 'themes', THEME, 'static'),
+    path.join(THEME_PATH, 'static'),
 )
 
 
@@ -116,7 +119,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
-    'template_texts.context_processors.template_texts',
+    'snippets.context_processors.snippets',
 )
 
 ROOT_URLCONF = 'conf.urls'
@@ -139,7 +142,7 @@ THINGS_APPS = (
     'articles',
     'journals',
     'pages',
-    'template_texts',
+    'snippets',
 )
 
 INSTALLED_APPS += THINGS_APPS
@@ -284,6 +287,10 @@ if USE_MAILGUN:
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 SERVER_EMAIL = env('SERVER_EMAIL', DEFAULT_FROM_EMAIL)
 
+
+if "snippets" in THINGS_APPS:
+    from snippets.utils import load_theme_snippets
+    load_theme_snippets(THEME_PATH)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

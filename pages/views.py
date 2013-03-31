@@ -1,21 +1,17 @@
-# views.py
-from django.views.generic import ListView, DetailView
-
-from pages.models import Page
+from things.views import ThingListView, ThingDetailView
+from .models import Page
 
 
-class PageDetailView(DetailView):
+PUBLIC_FILTERS = {'private': ""}
+
+
+class PageDetailView(ThingDetailView):
     model = Page
+    public_filters = PUBLIC_FILTERS
 
 
-class PageListView(ListView):
+class PageListView(ThingListView):
     model = Page
-
-    def get_queryset(self, *args, **kwargs):
-        super(PageListView, self).get_queryset(*args, **kwargs)
-        if self.request.user.is_superuser:
-            queryset = Page.objects.all().order_by('-updated_at')
-        else:
-            queryset = Page.objects.filter(private="").order_by('-updated_at')
-
-        return queryset
+    public_filters = PUBLIC_FILTERS
+    super_user_order = ['-updated_at']
+    public_order = "-updated_at"

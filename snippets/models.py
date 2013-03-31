@@ -7,14 +7,14 @@ TEMPLATE_TEXT_ATTRIBUTES = (
 )
 
 
-class TemplateText(Thing):
+class Snippet(Thing):
 
     class Meta:
         proxy = True
 
     def template_tag(self):
         if self.slug:
-            return '_'.join(['tt', self.slug.replace('-', '_')]).upper()
+            return '_'.join(['s', self.slug.replace('-', '_')]).upper()
         return ""
 
-register_thing(TemplateText, TEMPLATE_TEXT_ATTRIBUTES)
+register_thing(Snippet, TEMPLATE_TEXT_ATTRIBUTES)

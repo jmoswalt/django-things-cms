@@ -1,8 +1,9 @@
 from django.conf.urls import patterns, url
 
-from journals import views
+from . import views
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^journals/$', views.JournalListView.as_view(), name='journal_list'),
     url(r'^journals/(?P<slug>[\w\-\/]+)/$', views.JournalDetailView.as_view(), name='journal_detail'),
 )

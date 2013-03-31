@@ -1,13 +1,20 @@
-# views.py
-from django.views.generic import ListView, DetailView
+from datetime import datetime
 
-from articles.models import Article
+from things.views import ThingDetailView, ThingListView
+from .models import Article
 
 
-class ArticleDetailView(DetailView):
+PUBLIC_FILTERS = {'published_at__gte': 0,
+                  'published_at__lte': datetime.now()}
+
+
+class ArticleDetailView(ThingDetailView):
     model = Article
+    public_filters = PUBLIC_FILTERS
 
 
-class ArticleListView(ListView):
+class ArticleListView(ThingListView):
     model = Article
-    queryset = Article.objects.order_by('-published_at', '-created_at')
+    public_filters = PUBLIC_FILTERS
+    super_user_order = ['-published_at', '-created_at']
+    public_order = "-published_at"
