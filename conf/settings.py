@@ -120,7 +120,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
     'things.context_processors.extras',
-    'snippets.context_processors.snippets',
 )
 
 ROOT_URLCONF = 'conf.urls'
@@ -142,9 +141,13 @@ INSTALLED_APPS = (
 THINGS_APPS = (
     'articles',
     'journals',
-    'pages',
     'snippets',
+    'posts',
 )
+
+PAGES_APP_GOES_LAST = ('pages',)
+
+THINGS_APPS += PAGES_APP_GOES_LAST
 
 INSTALLED_APPS += THINGS_APPS
 

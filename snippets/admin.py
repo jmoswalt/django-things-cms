@@ -8,7 +8,7 @@ from .forms import SnippetForm
 
 class SnippetAdmin(ThingAdmin):
     form = SnippetForm
-    list_display = ['name', 'template_tag', 'content']
+    list_display = ['name', 'slug', 'content']
 
 
 admin.site.register(Snippet, SnippetAdmin)

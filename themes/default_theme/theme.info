@@ -2,3 +2,7 @@
 Sitename: Your Sitename Here
 Footer Text: &copy; 2013
 Home Title: Your Homepage Title Here
+Home Body: Put some body text on your homepage
+Main Navigation: <ul><li><a href="/">Home</a></li><li><a href="/articles/">Articles</a></li><li><a href="/pages/">Pages</a></li><li><a href="/journals/">Journals</a></li>
+
+Footer Links: <ul><li><a href="/">Home</a></li><li><a href="/articles/">Articles</a></li><li><a href="/pages/">Pages</a></li><li><a href="/journals/">Journals</a></li>

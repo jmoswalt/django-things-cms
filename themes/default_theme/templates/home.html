@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load snippet_tags %}
 
-{% block title %}{{ S_HOME_TITLE }}{% endblock %}
+{% block title %}{% snippet 'home-title' %}{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
@@ -11,7 +12,8 @@
     {% include "header.html" %}
 
     <div class="container">
-        <h1>{{ S_HOME_TITLE }}</h1>
+        <h2>{% snippet 'home-title' %}</h2>
+        <div>{% snippet 'home-body' safe=True %}</div>
     </div> <!-- /container -->
 
     {% include "footer.html" %}

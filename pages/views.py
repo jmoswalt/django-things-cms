@@ -2,16 +2,16 @@ from things.views import ThingListView, ThingDetailView
 from .models import Page
 
 
-PUBLIC_FILTERS = {'private': ""}
+PUBLIC_FILTER_OUT = {'private': ""}
 
 
 class PageDetailView(ThingDetailView):
     model = Page
-    public_filters = PUBLIC_FILTERS
+    public_filter_out = PUBLIC_FILTER_OUT
 
 
 class PageListView(ThingListView):
     model = Page
-    public_filters = PUBLIC_FILTERS
+    public_filter_out = PUBLIC_FILTER_OUT
     super_user_order = ['-updated_at']
     public_order = "-updated_at"

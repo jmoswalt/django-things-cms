@@ -1,3 +1,7 @@
+{% load snippet_tags %}
+
 <div class="container">
-    <footer>{{ S_FOOTER_TEXT|safe }}</footer>
-</div>
+
+    <footer>{% snippet 'footer-text' safe=True %}</footer>
+
+</div> <!-- /container -->
