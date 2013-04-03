@@ -1,8 +1,11 @@
 import dj_database_url
-from os import environ, path
+import sys
+from os import environ, path, listdir
 from . import env
 
 PROJECT_ROOT = path.abspath(path.join(path.dirname(__file__), ".."))
+APPS_ROOT = path.join(PROJECT_ROOT, 'apps')
+sys.path.insert(0, APPS_ROOT)
 
 # Debug option which is useful when working locally.
 DEBUG = env('DEBUG', False)
@@ -90,14 +93,14 @@ STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,6 +112,7 @@ MIDDLEWARE_CLASSES = (
     'johnny.middleware.LocalStoreClearMiddleware',
     'johnny.middleware.QueryCacheMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -132,22 +136,28 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.markup',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django.contrib.redirects',
     'things',
 )
 
-THINGS_APPS = (
-    'articles',
-    'journals',
-    'snippets',
-    'posts',
-)
+THINGS_APPS = ()
 
-PAGES_APP_GOES_LAST = ('pages',)
+# Load apps from local "apps" folder in project
+THINGS_APPS += tuple(app for app in listdir(APPS_ROOT) if app != "pages")
 
-THINGS_APPS += PAGES_APP_GOES_LAST
+# Pages must come last because of it's wide open urls.py
+if "pages" in listdir(APPS_ROOT):
+    THINGS_APPS += ('pages',)
+
+# Auto-load snippets from the theme.info folder
+if "snippets" in THINGS_APPS:
+    from snippets.utils import load_theme_snippets
+    load_theme_snippets(THEME_PATH)
 
 INSTALLED_APPS += THINGS_APPS
 
@@ -222,8 +232,8 @@ MEMCACHIER_USERNAME = env('MEMCACHIER_USERNAME')
 MEMCACHIER_PASSWORD = env('MEMCACHIER_PASSWORD')
 
 USE_MEMCACHIER = all([MEMCACHIER_SERVERS,
-                    MEMCACHIER_USERNAME,
-                    MEMCACHIER_PASSWORD])
+                      MEMCACHIER_USERNAME,
+                      MEMCACHIER_PASSWORD])
 
 if USE_MEMCACHIER:
     environ['MEMCACHE_SERVERS'] = MEMCACHIER_SERVERS
@@ -276,9 +286,9 @@ MAILGUN_SMTP_PASSWORD = env('MAILGUN_SMTP_PASSWORD')
 MAILGUN_SMTP_PORT = env('MAILGUN_SMTP_PORT')
 
 USE_MAILGUN = all([MAILGUN_SMTP_SERVER,
-                MAILGUN_SMTP_LOGIN,
-                MAILGUN_SMTP_PASSWORD,
-                MAILGUN_SMTP_PORT])
+                   MAILGUN_SMTP_LOGIN,
+                   MAILGUN_SMTP_PASSWORD,
+                   MAILGUN_SMTP_PORT])
 
 if USE_MAILGUN:
     EMAIL_USE_TLS = True
@@ -291,10 +301,6 @@ if USE_MAILGUN:
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 SERVER_EMAIL = env('SERVER_EMAIL', DEFAULT_FROM_EMAIL)
 
-
-if "snippets" in THINGS_APPS:
-    from snippets.utils import load_theme_snippets
-    load_theme_snippets(THEME_PATH)
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

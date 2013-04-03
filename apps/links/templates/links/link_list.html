@@ -1,0 +1,9 @@
+{% extends "interior.html" %}
+
+{% block title %}Link List{% endblock title %}
+
+{% block content %}
+    {% for object in object_list %}
+        {% include "links/_link_list_item.html" %}
+    {% endfor %}
+{% endblock content %}

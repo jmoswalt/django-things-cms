@@ -31,7 +31,8 @@ def get_app_url_patterns():
             __import__('.'.join([app, 'urls']))
             items.append((r'', include('%s.urls' % app,)))
         except Exception as e:
-            print e
+            print "Skipping %s: %s" % (app, e)
+            pass
     return patterns('', *items)
 
 urlpatterns += get_app_url_patterns()

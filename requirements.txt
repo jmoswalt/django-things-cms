@@ -15,3 +15,5 @@ django-storages==1.1.5
 
 # For Sentry
 raven==3.2.1
+
+markdown==2.3.1

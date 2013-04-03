@@ -1,10 +1,13 @@
-{% extends "interior.html" %}
+{% extends extend_things %}
+{% load markup %}
 
-{% block title %}{{ object.name }} by {{ object.author }}{% endblock title %}
 
 {% block content %}
     <h1>{{ object.name }}</h1>
-    <p>{{ object.content|safe }}</p>
+
+    <div>{{ object.content|markdown:"safe" }}</div>
+
     <p>Last Updated: {{ object.updated_at|date:"m/d/Y h:i a" }}</p>
+
     <p><a href="{% url 'page_list' %}">All Pages</a></p>
 {% endblock content %}
