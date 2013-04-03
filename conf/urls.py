@@ -12,6 +12,7 @@ urlpatterns = patterns(
     # url(r'^$', 'app_name.views.home', name='home'),
     url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^redactor/', include('redactor.urls')),
 )
 
 urlpatterns += patterns(
@@ -19,6 +20,10 @@ urlpatterns += patterns(
     (r'^static/(?P<path>.*)$',
         'django.views.static.serve',
         {'document_root': join(settings.PROJECT_ROOT, 'static')}
+     ),
+    (r'^media/(?P<path>.*)$',
+        'django.views.static.serve',
+        {'document_root': join(settings.PROJECT_ROOT, 'media')}
      ),
 )
 

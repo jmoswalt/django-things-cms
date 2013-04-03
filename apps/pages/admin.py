@@ -2,13 +2,12 @@ from django.contrib import admin
 
 from things.admin import ThingAdmin, PrivateListFilter
 
-from pages.forms import PageForm
-from pages.models import Page
+from .forms import PageForm
+from .models import Page
 
 
 class PageAdmin(ThingAdmin):
     form = PageForm
-    list_display = ['name', 'link', 'content', 'updated_at', 'private']
     list_filter = [PrivateListFilter]
 
 

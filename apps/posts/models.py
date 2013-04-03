@@ -3,6 +3,12 @@ from things import attrs, types
 
 
 POST_ATTRIBUTES = (
+    {
+        "name": "Featured Image",
+        "key": "featured_image",
+        "description": "Add a featured image to the {{ model }}.",
+        "datatype": types.TYPE_FILE
+    },
     attrs.CONTENT,
     {
         "name": "Tags",

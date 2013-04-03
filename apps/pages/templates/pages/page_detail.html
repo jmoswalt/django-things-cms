@@ -5,7 +5,7 @@
 {% block content %}
     <h1>{{ object.name }}</h1>
 
-    <div>{{ object.content|markdown:"safe" }}</div>
+    <div>{{ object.content|safe }}</div>
 
     <p>Last Updated: {{ object.updated_at|date:"m/d/Y h:i a" }}</p>
 

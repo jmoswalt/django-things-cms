@@ -8,7 +8,6 @@ from .models import Link
 
 class LinkAdmin(ThingAdmin):
     form = LinkForm
-    list_display = ['name', 'link', 'content', 'private', 'published_at']
     list_filter = [PrivateListFilter]
 
 

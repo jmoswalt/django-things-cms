@@ -13,3 +13,5 @@
 # except for .gitignore
 !/.gitignore
 !/.env_example
+
+/media/*
