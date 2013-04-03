@@ -1,5 +1,4 @@
-from things.models import Thing, register_thing
-from things import attrs, types
+from things import attrs, types, models
 
 
 POST_ATTRIBUTES = (
@@ -21,10 +20,10 @@ POST_ATTRIBUTES = (
 )
 
 
-class Post(Thing):
+class Post(models.Thing):
 
     class Meta:
         proxy = True
 
 
-register_thing(Post, POST_ATTRIBUTES)
+models.register_thing(Post, POST_ATTRIBUTES)
