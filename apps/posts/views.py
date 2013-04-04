@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from things.views import ThingDetailView, ThingListView
-from .models import Post
+from .models import Post, PostPhoto
 
 
 PUBLIC_FILTER_OUT = {'published_at__gte': 0,
@@ -18,3 +18,7 @@ class PostListView(ThingListView):
     public_filter_out = PUBLIC_FILTER_OUT
     super_user_order = ['-published_at', '-created_at']
     public_order = "-published_at"
+
+
+class PostPhotoDetailView(ThingDetailView):
+    model = PostPhoto
