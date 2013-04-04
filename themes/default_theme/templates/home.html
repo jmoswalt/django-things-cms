@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load snippet_tags %}
 
-{% block title %}{% snippet 'home-title' %}{% endblock %}
+{% block title %}{% snippet 'home-title' %}Your Sitename Here{% endsnippet %}{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">
@@ -12,8 +12,10 @@
     {% include "header.html" %}
 
     <div class="container">
-        <h2>{% snippet 'home-title' %}</h2>
-        <div>{% snippet 'home-body' safe=True %}</div>
+        <h2>{% snippet 'home-title' striptags %}Your Homepage Title Here{% endsnippet %}</h2>
+        <div>{% snippet 'home-body' %}
+            <p>Put some body text on your homepage</p>
+            {% endsnippet %}</div>
     </div> <!-- /container -->
 
     {% include "footer.html" %}
