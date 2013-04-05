@@ -1,6 +1,6 @@
-from things.models import Thing, register_thing
-from things.types import *
-from things import attrs
+from datetime import datetime
+
+from things import attrs, types, models
 
 
 JOURNAL_ATTRIBUTES = (
@@ -12,15 +12,22 @@ JOURNAL_ATTRIBUTES = (
         "name": "Day Weather",
         "key": "temperature",
         "description": "The temperature for this {{ model }} (in F).",
-        "datatype": TYPE_FLOAT
+        "datatype": types.TYPE_FLOAT
     },
 )
 
 
-class Journal(Thing):
+class Journal(models.Thing):
+    public_filter_out = {
+        'published_at__gte': 0,
+        'published_at__lte': datetime.now().replace(second=0, microsecond=0),
+        'private': ""
+    }
+    super_user_order = ['-published_at', '-created_at']
+    public_order = "-published_at"
 
     class Meta:
         proxy = True
 
 
-register_thing(Journal, JOURNAL_ATTRIBUTES)
+models.register_thing(Journal, JOURNAL_ATTRIBUTES)

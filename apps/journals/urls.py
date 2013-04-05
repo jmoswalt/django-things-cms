@@ -1,9 +1,15 @@
 from django.conf.urls import patterns, url
 
-from . import views
+from things.views import ThingDetailView, ThingListView
+from .models import Journal
 
 urlpatterns = patterns(
     '',
-    url(r'^journals/$', views.JournalListView.as_view(), name='journal_list'),
-    url(r'^journals/(?P<slug>[\w\-\/]+)/$', views.JournalDetailView.as_view(), name='journal_detail'),
+    url(r'^journals/$',
+        ThingListView.as_view(model=Journal),
+        name='journal_list'),
+
+    url(r'^journals/(?P<slug>[\w\-\/]+)/$',
+        ThingDetailView.as_view(model=Journal),
+        name='journal_detail'),
 )

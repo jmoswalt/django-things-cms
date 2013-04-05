@@ -1,4 +1,4 @@
 body{background-color:#e5eaea;color:#333333;}
-header{margin-top:10px;}header h1 a{color:#333333;}
+header{margin:10px 0 30px;}header h1 a{color:#333333;}
 header ul{float:right;margin:10px 0 0 0;}header ul li{display:inline;margin-right:10px;}
 footer{margin:20px 0 10px;}footer ul{display:inline;margin-left:0;}footer ul li{display:inline;margin-right:10px;}

@@ -1,5 +1,6 @@
-from things.models import Thing, register_thing
-from things import attrs, types
+from datetime import datetime
+
+from things import attrs, types, models
 
 
 ARITCLE_ATTRIBUTES = (
@@ -16,10 +17,16 @@ ARITCLE_ATTRIBUTES = (
 )
 
 
-class Article(Thing):
+class Article(models.Thing):
+    public_filter_out = {
+        'published_at__gte': 0,
+        'published_at__lte': datetime.now().replace(second=0, microsecond=0)
+    }
+    super_user_order = ['-published_at', '-created_at']
+    public_order = "-published_at"
 
     class Meta:
         proxy = True
 
 
-register_thing(Article, ARITCLE_ATTRIBUTES)
+models.register_thing(Article, ARITCLE_ATTRIBUTES)

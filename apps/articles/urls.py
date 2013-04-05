@@ -1,9 +1,16 @@
 from django.conf.urls import patterns, url
 
-from articles import views
+from things.views import ThingDetailView, ThingListView
+from .models import Article
+
 
 urlpatterns = patterns(
     '',
-    url(r'^articles/$', views.ArticleListView.as_view(), name='article_list'),
-    url(r'^articles/(?P<slug>[\w\-\/]+)/$', views.ArticleDetailView.as_view(), name='article_detail'),
+    url(r'^articles/$',
+        ThingListView.as_view(model=Article),
+        name='article_list'),
+
+    url(r'^articles/(?P<slug>[\w\-\/]+)/$',
+        ThingDetailView.as_view(model=Article),
+        name='article_detail'),
 )
