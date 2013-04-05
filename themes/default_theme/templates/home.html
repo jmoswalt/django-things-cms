@@ -24,7 +24,7 @@
                     {% endsnippet %}
                 </div>
                 <div>
-                    {% get_things_by_type articles.article as things limit=5 %}
+                    {% get_things_by_type articles.article as things limit=2 %}
                     {% for thing in things %}
                     <h3><a href="{{ thing.get_absolute_url }}">{{ thing.name }}</a></h3>
                     <div>{{ thing.content|safe|truncatewords_html:"20" }}</div>

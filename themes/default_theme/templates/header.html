@@ -3,13 +3,16 @@
 <div class="container">
     <header class="row">
 
-        <div class="span8">
+        <div class="span9">
+            {% spaceless %}
             <h1>
                 <a href="/">{% snippet 'sitename' striptags %}Your Sitename Here{% endsnippet %}</a>
             </h1>
+            {% endspaceless %}
+            <span>{% snippet 'subtitle' striptags %}Nice subtitle here{% endsnippet %}</span>
         </div> <!-- /.span8 -->
 
-        <div id="main-navigation" class="span4">
+        <div id="main-navigation" class="span3">
             {% snippet 'main-navigation' %}
             <ul>
                 <li><a href="/">Home</a></li>
