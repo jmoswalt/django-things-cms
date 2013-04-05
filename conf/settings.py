@@ -146,25 +146,39 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.redirects',
-    'things',
+
     'redactor',
+
+    'things',
+    'things.pages',
+    'things.snippets',
 )
 
 THINGS_APPS = ()
 
 # Load apps from local "apps" folder in project
-THINGS_APPS += tuple(app for app in listdir(APPS_ROOT) if app != "pages")
+THINGS_APPS += tuple(app for app in listdir(APPS_ROOT))
 
 # Pages must come last because of it's wide open urls.py
-if "pages" in listdir(APPS_ROOT):
-    THINGS_APPS += ('pages',)
+# if "pages" in listdir(APPS_ROOT):
+#     THINGS_APPS += ('pages',)
 
 # Auto-load snippets from the theme.info folder
-if "snippets" in THINGS_APPS:
-    from snippets.utils import load_theme_snippets
-    load_theme_snippets(THEME_PATH)
+#if "snippets" in THINGS_APPS:
+from things.snippets.utils import load_theme_snippets
+load_theme_snippets(THEME_PATH)
 
 INSTALLED_APPS += THINGS_APPS
+
+
+WPADMIN = {
+    'admin': {
+        'menu': {
+            'top': 'wpadmin.menu.menus.TopMenu',
+            'left': 'wpadmin.menu.menus.LeftMenu',
+        }
+    },
+}
 
 # -------------------------------------- #
 # DEBUG OPTIONS

@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% load snippet_tags %}
 
-{% block title %}{% snippet 'home-title' %}Your Sitename Here{% endsnippet %}{% endblock %}
+{% block title %}
+{% filter striptags %}
+{% snippet 'home-title' %}Your Sitename Here{% endsnippet %}
+{% endfilter %}
+{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css">

@@ -1,6 +1,0 @@
-{% load markup %}
-
-<h2><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></h2>
-<div>{{ object.content|safe|truncatewords_html:"20" }}</div>
-<p>Last Updated: {{ object.updated_at|date:"m/d/Y h:i a" }}</p>
-{% include "_edit_link.html" %}
