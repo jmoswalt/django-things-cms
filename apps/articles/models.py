@@ -1,17 +1,11 @@
 from datetime import datetime
 
-from things import attrs, types, models
+from things import attrs, models
 
 
 ARITCLE_ATTRIBUTES = (
     attrs.CONTENT,
     attrs.AUTHOR,
-    {
-        "name": "Mood",
-        "key": "mood",
-        "description": "The mood for the author.",
-        "datatype": types.TYPE_TEXT
-    },
     attrs.PUBLISHED_AT,
     attrs.FEATURED,
 )
