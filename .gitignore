@@ -15,3 +15,9 @@
 !/.env_example
 
 /media/*
+/apps/*
+
+!/apps/articles/
+!/apps/journals/
+!/apps/links/
+!/apps/posts/
