@@ -18,5 +18,4 @@ raven==3.2.1
 
 django-wysiwyg-redactor==0.3.1
 django-pagination==1.0.7
-pyparseuri==0.1
 BeautifulSoup==3.2.1
