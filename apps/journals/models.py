@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from things import attrs, types, models
+from things import attrs, models, types
 
 
 JOURNAL_ATTRIBUTES = (
@@ -8,11 +8,13 @@ JOURNAL_ATTRIBUTES = (
     attrs.AUTHOR,
     attrs.PUBLISHED_AT,
     attrs.PRIVATE,
+    attrs.FEATURED,
     {
-        "name": "Day Weather",
-        "key": "temperature",
-        "description": "The temperature for this {{ model }} (in F).",
-        "datatype": types.TYPE_FLOAT
+        "name": "Category",
+        "key": "category",
+        "description": "Add a Category to the {{ model }}.",
+        "datatype": types.TYPE_TEXT,
+        "required": False
     },
 )
 
