@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from things import attrs, models
+from things import attrs, models, types
 
 
 ARITCLE_ATTRIBUTES = (
@@ -8,6 +8,13 @@ ARITCLE_ATTRIBUTES = (
     attrs.AUTHOR,
     attrs.PUBLISHED_AT,
     attrs.FEATURED,
+    {
+        "name": "Category",
+        "key": "category",
+        "description": "Add a Category to the {{ model }}.",
+        "datatype": types.TYPE_TEXT,
+        "required": False
+    },
 )
 
 

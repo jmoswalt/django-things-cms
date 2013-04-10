@@ -11,6 +11,7 @@
                 <li class="active">{{ object.name }}</li>
             </ul>
             {% if object.author %}<p>By: {{ object.author }}</p>{% endif %}
+            <p>Category: {{ object.category }}</p>
             {% if object.published_at %}<p>Published: {{ object.published_at|date:"m/d/Y h:i a" }}</p>{% endif %}
         </div>
         <div class="span8 page-header">
